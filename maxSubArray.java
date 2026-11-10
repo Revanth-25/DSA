@@ -30,15 +30,45 @@ class Solution {
         // }
         // return max;
         //Kadane's algorithm - O(n)
-        for(int i=0 ; i<n ; i++){
-            sum = sum + nums[i];
+        // for(int i=0 ; i<n ; i++){
+        //     sum = sum + nums[i];
+        //     if(sum > max){
+        //         max = sum;
+        //     }
+        //     if(sum < 0){
+        //         sum = 0;
+        //     }
+        // }
+        // return max;
+
+
+
+        //Printing sub arrays
+        int start = 0;
+        int end = 0;
+        int tempStart = 0;
+
+        for(int i=0; i<n; i++){
+            sum += nums[i];
             if(sum > max){
                 max = sum;
+                start = tempStart;
+                end = i;
             }
+
             if(sum < 0){
                 sum = 0;
+                tempStart = i+1;
             }
         }
+
+        System.out.println("Maximum Subarray Sum: " +max);
+
+        System.out.println("Subarray: ");
+        for(int i=start; i<=end; i++){
+            System.out.println(nums[i]+" ");
+        }
+
         return max;
     }
 }
